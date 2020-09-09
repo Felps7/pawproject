@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Reservas</h2>
+    <div class="criarReserva">
+        <button *ngIf="addingReserva == false && user.role == 'UTILIZADOR'" class="btn btn-primary" type="button" (click)="addingReserva = true">Fazer
+            Reserva</button>
+        <form *ngIf="addingReserva" (submit)="addReserva()">
+            <div class="form-group">
+                <label class="control-label">Data:
+                <input type='date' class="form-control" [(ngModel)]="reserva.data" name="data"/>
+                <br>
+                </label>
+                    <label class="control-label">Número de pessoas:
+                      <input type="number" class="form-control" [(ngModel)]="reserva.nrPessoas" name="nrPessoas" min="1" max="30"></label>
+                    <label class="control-label">Refeição:
+                        <select input class="form-control" [(ngModel)]="reserva.info" name="info">
+                            <option value="Almoço">Almoço</option>
+                            <option value="Jantar">Jantar</option>
+                        </select>
+                    </label>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Ementa desejada:
+                    <select class="form-control" [(ngModel)]="reserva.ementa" name="ementa">
+                        <option value="Nenhuma">Decido no dia</option>
+                        <option *ngFor="let em of ementas" [value]="em._id">{{em.nome}}</option>
+                    </select>
+                </label>
+            </div>
+            <div id="reservaButtons">
+                <button class="btn btn-primary" type="submit">Confirmar</button><br>
+
+                <button class="btn btn-danger" type="button"
+                    (click)="addingReserva = false">Cancelar</button>
+            </div>
+        </form>
+    </div>
+    <div class="pesquisa">
+        <form (submit)="filtrousername()"  *ngIf="user.role != 'UTILIZADOR'">
+            <h5>Pesquisar pelo username</h5>
+            <div class="form-group">
+                <label class="control-label">
+                    <input class="form-control" [(ngModel)]="usernameFiltro" name="username" type="text"
+                        placeholder="username" />
+                </label>
+            </div>
+            <button class="btn btn-primary" type="submit">Pesquisar</button>
+                <button *ngIf="viewingListar == true" class="btn btn-danger" (click)="getReservas()">Voltar</button>
+        </form>
+    </div>
+    <div class="conteiner">
+
+        <div class="table-div">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Username</th>
+                        <th scope="col">Data</th>
+                        <th scope='col'>Refeição</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Preço</th>
+                        <th *ngIf="user.role != 'UTILIZADOR'" scope="col">Apagar Reserva</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let r of reservas">
+                        <td (click)="reservaInfo(r._id)" title="Clica para veres/esconderes informações desta reserva!">
+                            {{r.username}} </td>
+                        <td >{{r.data}}</td>
+                        <td>{{r.info}}</td>
+                        <td>{{r.estado}}</td>
+                        <td *ngIf="r.preco!=null">{{r.preco}}€</td>
+                        <td *ngIf="r.preco==null">-------</td>
+                        <td *ngIf="user.role != 'UTILIZADOR'" (click)="delete(r._id)" ><button class="btn btn-danger">Apagar</button></td>
+                </tbody>
+            </table>
+        </div>
+        <div class="info" *ngIf="viewingReserva">
+            <p>ID da Reserva: {{currentReserva._id}}</p>
+            <p>Username do usuário da reserva: {{currentReserva.username}}</p>
+            <p>Ementa escolhida: {{currentReserva.ementa}}</p>
+            <p>Informação da reserva: {{currentReserva.info}}</p>
+            <p>Estado desta reserva: {{currentReserva.estado}}</p>
+            <p>Data desta reserva: {{currentReserva.data}}</p>
+            <button *ngIf="atualizarReserva == false && user.role != 'UTILIZADOR'" class="btn btn-primary" type="button"
+                (click)="atualizarReserva = true">Atualizar</button>
+
+            <form *ngIf="atualizarReserva && user.role != 'UTILIZADOR'" (submit)="update()" class="updateForm">
+                    <label class="control-label">Estado reserva: <br>
+                        <input type="radio"
+                        [(ngModel)]="reserva.estado" value="Confirmada" name="estado"/>
+                        Confirmada
+                        <br>
+                        <input type='radio' [(ngModel)]="reserva.estado" value="Cancelada" name="estado"/>
+                        Cancelada
+                </label>
+                <button class="btn btn-primary" type="submit">Atualizar</button>
+                <button *ngIf="atualizarReserva == true" class="btn btn-danger" type="button"
+                    (click)="atualizarReserva = false">Cancelar</button>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

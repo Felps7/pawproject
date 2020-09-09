@@ -1,0 +1,23 @@
+<header *ngIf="user">
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+        <div class="collapse navbar-collapse" id="navbarsExample02">
+          <ul class="navbar-nav mr-auto">
+            <img src="../assets/home.png" alt="home" width="50" height="40">
+            <li class="nav-item active">
+              <a class="nav-link" href="/home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/ementas">Menus</a>
+            </li>
+            <li class="nav-item">
+              <a *ngIf="this.user.role=='ADMIN'" class="nav-link" routerLink="/agenda">Agenda</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-md-0">
+            <button routerLink="/changePassword" class="btn btn-primary" id="Buttons">Editar Password</button>
+            <button (click)="logout()" class="btn btn-danger">Logout</button>
+          </form>
+        </div>
+      </nav>
+    </header>
+<router-outlet></router-outlet>

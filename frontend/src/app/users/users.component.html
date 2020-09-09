@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Lista de utilizadores</h2>
+<div class="conteiner">
+    <div class="table-div">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Remover</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let u of utilizadoresP; let i=index">
+                    <td (click)="utilizadorInfo(u._id)" title="Clica para veres/esconderes informações deste user!">
+                        {{ u.username}} </td>
+                    <td>{{ u.nome }}</td>
+                    <td>{{ u.email }}</td>
+                    <td *ngIf="user.username != u.username" (click)="delete(u._id)"> <button class="btn btn-danger">Apagar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="info" *ngIf="viewingUtilizador">
+        <div>
+            <p>Nome do Utilizador: <span>{{currentUtilizador.nome}}</span></p>
+            <p>Email do Utilizador: <span>{{currentUtilizador.email}}</span></p>
+            <p>ID do Utilizador:  <span>{{currentUtilizador._id}}</span></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+

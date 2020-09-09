@@ -1,0 +1,46 @@
+body{
+  margin-top: 9vh;
+}
+
+.info{
+  margin:3%;
+  display: flex;
+  flex-direction: column;
+
+}
+
+h2{
+  text-align: center;
+  margin-top: 3%;
+}
+
+.conteiner{
+  display: flex;
+  flex-direction: row;
+}
+
+.table-div{
+  margin:3%;
+  width: 47%;
+}
+
+.custom-select{
+  width: 30%;
+}
+
+.updateForm{
+  display: flex;
+  flex-direction: column;
+}
+
+.criarEmenta{
+  margin: 3%;
+  width: 30%;
+}
+
+.criarEmenta *{
+  width: 100%;
+}
+
+
+

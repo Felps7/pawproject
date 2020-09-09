@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admins</title>
+</head>
+<body>
+    <h2>Admins</h2>
+    <div class="criarAdmin">
+        <button *ngIf="addingAdmin == false" class="btn btn-primary" (click)="addingAdmin = true">Adicionar Admin</button>
+        <form *ngIf="addingAdmin" (submit)="addAdmin()">
+            <input [(ngModel)]="userId" name="userId" type="text" placeholder="Id do Utilizador" /><br>
+            <button class="btn btn-primary" type="submit" >Adicionar</button>
+            <button *ngIf="addingAdmin == true" class="btn btn-danger" type="button"
+                (click)="addingAdmin = false">Cancelar</button>
+        </form>
+    </div>
+    <div class="conteiner">
+        <div class="table-div">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Apagar Admin</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let t of adminsP; let i=index;">
+                        <td (click)="adminInfo(t._id)" title="Clica para veres/esconderes informações deste Admin!">{{t.nome}}</td>
+                        <td> {{t._id}} </td>
+                        <td *ngIf="user.username != t.username" (click)="demote(t._id)"> <button class="btn btn-danger">Apagar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="info" *ngIf="viewingAdmin">
+            <p>Nome do Admin: {{currentAdmin.nome}}</p>
+            <p>ID do Admin: {{currentAdmin._id}}</p>
+            <p>ID de usuário do Admin: {{currentAdmin.utilizadorId}}</p>
+        </div>
+    </div>
+</body>
+
+</html>

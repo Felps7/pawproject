@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admins</title>
+</head>
+
+<body>
+        <div class="container">
+                <div class="texto">
+                        <br>
+                        <h3 class="textoShadow">Bem-vindo {{user.nome}}</h3>
+                        <h4 class="textoShadow">Estás logado como
+                                {{user.role.toLowerCase().charAt(0).toUpperCase() + user.role.toLowerCase().slice(1)}}
+                        </h4>
+                </div>
+                <br>
+                <div>
+                        <button routerLink="/reservas" class="btn btn-dark" type="button">Reservas</button>
+                        <button routerLink="/users" class="btn btn-warning" *ngIf="havePremission('ADMIN')"
+                         type="button">Utilizadores</button>
+                        <button routerLink="/admins" class="btn btn-secondary" *ngIf="havePremission('ADMIN')"
+                        type="button">Admins</button>
+                </div>
+        <hr>
+        <div id="img">
+        <img src="../../assets/imagens/massa.PNG" alt="image" width="350" height="200">
+        <img src="../../assets/imagens/restaurante.jpg" alt="image" width="350" height="200">
+        <img src="../../assets/comida.jpg" alt="image" width="350" height="200">
+        </div>
+        <footer id="View">
+                <p>Trabalho PAW © | Filipe Oliveira</p>
+        </footer>
+</div>
+</body>
+
+</html>

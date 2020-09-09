@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Ementas</h2>
+    <div class="criarEmenta">
+        <button *ngIf="addingEmenta==false && user.role != 'UTILIZADOR'" class="btn btn-primary" type="button" (click)="addingEmenta = true">Adicionar Ementa</button>
+        <form *ngIf="addingEmenta" (submit)="addEmenta()">
+            <div class="form-group">
+                <label class="control-label">Nome da ementa:
+                    <input class="form-control" [(ngModel)]="ementa.nome" name="nome"
+                        placeholder="Insira nome da ementa" /></label>
+                    <br>    
+                    <label class="control-label">Entradas:
+                        <input class="form-control" [(ngModel)]="ementa.entradas" name="entradas"
+                            placeholder="Insira entradas..." /> </label>
+                    <br>
+                    <label class="control-label">Prato de carne:
+                        <input class="form-control" [(ngModel)]="ementa.pratoCarne" name="pratoCarne"
+                            placeholder="Insira prato de carne" /></label>
+                    <br>
+                    <label class="control-label">Prato de peixe:
+                        <input class="form-control" [(ngModel)]="ementa.pratoPeixe" name="pratoPeixe"
+                            placeholder="Insira o prato de peixe" /></label>
+                    <br>
+                    <label class="control-label">Preço:
+                        <input class="form-control" [(ngModel)]="ementa.preco" name="preco"
+                            placeholder="Insira o preço da ementa" /></label>
+            </div>
+            <div id="ementaButtons">
+                <button class="btn btn-primary" type="submit">Confirmar</button><br>
+                <button *ngIf="addingEmenta == true" class="btn btn-danger" type="button"
+                    (click)="addingEmenta = false">Cancelar</button>
+            </div>
+        </form>
+    </div>
+    <div class="conteiner">
+
+        <div class="table-div">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Ementa</th>
+                        <th scope="col">Preço</th>
+                        <th *ngIf="user.role != 'UTILIZADOR'" scope="col">Apagar Ementa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let e of ementasP; let i=index">
+                        <td (click)="ementaInfo(e._id)" title="Clica para veres/esconderes informações desta ementa!">
+                            {{e.nome}} </td>
+                        <td>{{e.preco}}€</td>
+                        <td *ngIf="user.role != 'UTILIZADOR'" (click)="delete(e._id)"> <button class="btn btn-danger">Apagar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="info" *ngIf="viewingEmenta">
+            <p>Nome da ementa: {{currentEmenta.nome}}</p>
+            <p>ID da Ementa: {{currentEmenta._id}}</p>
+            <p>Entradas: {{currentEmenta.entradas}}</p>
+            <p>Prato de carne: {{currentEmenta.pratoCarne}}</p>
+            <p>Prato de peixe: {{currentEmenta.pratoPeixe}}</p>
+            <p>Preço: {{currentEmenta.preco}}€</p>
+            <button *ngIf="atualizarEmenta == false && user.role != 'UTILIZADOR'" class="btn btn-primary" type="button"
+                (click)="atualizarEmenta = true">Atualizar</button>
+
+            <form *ngIf="atualizarEmenta && user.role != 'UTILIZADOR'" (submit)="update()" class="updateForm">
+                    <label class="control-label">Entradas:
+                    <input class="form-control" [(ngModel)]="ementa.entradas" name="entradas"
+                        placeholder="Insira entradas"/></label>
+                    <label class="control-label">Prato de carne:
+                    <input class="form-control" [(ngModel)]="ementa.pratoCarne" name="pratoCarne"
+                        placeholder="Insira prato de carne"/></label>
+                    <label class="control-label">Prato de peixe:
+                    <input class="form-control" [(ngModel)]="ementa.pratoPeixe" name="pratoPeixe"
+                        placeholder="Insira prato de peixe"/></label>
+                    <label class="control-label">Preco ementa:
+                    <input class="form-control" [(ngModel)]="ementa.preco" name="preco"
+                        placeholder="Insira preco da ementa"/></label>
+                <button class="btn btn-primary" type="submit">Atualizar</button>
+                <button *ngIf="atualizarEmenta == true" class="btn btn-danger" type="button"
+                    (click)="atualizarEmenta = false">Cancelar</button>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+</html>

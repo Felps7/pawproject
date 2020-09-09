@@ -1,0 +1,81 @@
+body{
+  margin-top: 9vh;
+}
+.info{
+  margin:3%;
+  display: flex;
+  flex-direction: column;
+
+}
+
+h2{
+  text-align: center;
+  margin-top: 3%;
+}
+
+.conteiner{
+  display: flex;
+  flex-direction: row;
+}
+
+.filtros form{
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.filtros form *{
+  align-self: flex-end;
+}
+
+.filtros form button{
+  height: 100%;
+  align-self: flex-end;
+  margin-bottom: 1%;
+}
+
+#reservaButtons{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#reservaButtons *{
+  width: 35%;
+}
+
+.pesquisa{
+  margin: 3%;
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.pesquisa *{
+  margin-right: 5%;
+}
+
+.table-div{
+  margin:3%;
+  width: 47%;
+}
+
+.custom-select{
+  width: 30%;
+}
+
+.updateForm{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.criarReserva {
+  margin: 3%;
+  width: 30%;
+}
+
+.criarReserva *{
+  width: 100%;
+}
+
+.filtrosReserva {
+  margin: 3%;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p *ngIf="sessionExpired" class="alerta alert alert-danger">Sessão expirada!</p>
+    <div class="container" *ngIf="isRegistering == false">
+        <br>
+        <h1>Login</h1>
+        <hr>
+        <form (submit)="login()">
+            <div class="form-group">
+                <label for="usernameInput">Username</label>
+                    <input [(ngModel)]="username" name="username" type="text" class="form-control" required
+                        placeholder="Introduz o username">
+            </div>
+            <div class="form-group">
+                <label for="passwordInput">Password</label>
+                    <input [(ngModel)]="password" name="password" type="password" class="form-control" required
+                        id="passwordInput" placeholder="Introduz a password">
+            </div>
+            <br>
+                <button class="btn btn-primary" type="submit">Login</button>
+                <br>
+                <br>
+                <button class="btn btn-primary" *ngIf="isRegistering == false" type="button"
+                    (click)="isRegistering = true">Registar</button>
+        </form>
+    </div>
+    <div class="container" *ngIf="isRegistering">
+        <br>
+        <h1>Registar</h1>
+        <hr>
+        <form *ngIf="isRegistering" (submit)="register()" name="registo">
+            <div class="form-group">
+                <label for="nomeInput">Nome</label>
+                    <input [(ngModel)]="nome" name="nome" type="text" class="form-control" required
+                        placeholder="Nome..." />
+            </div>
+            <div class="form-group">
+                <label for="usernameInput">Username</label>
+                    <input [(ngModel)]="username" name="username" type="text" class="form-control" id="usernameInput" required
+                        placeholder="Introduz o username...">
+            </div>
+            <div class="form-group">
+                <label for="emailInput">Email</label>
+                    <input [(ngModel)]="email" name="email" type="text" class="form-control" required
+                        placeholder="Email..." />
+            </div>
+            <div class="form-group">
+                <label for="passwordInput">Password</label>
+                <input [(ngModel)]="password" name="password" type="password" class="form-control" required
+                        id="passwordInput" placeholder="Introduz a password...">
+            </div>
+            <br>
+            <button class="btn btn-primary" type="submit">Registar</button><br>
+            <br>
+            <button class="btn btn-primary" type="button" (click)="isRegistering = false">Voltar</button>
+            </form>
+        </div>
+</body>
+</html>
