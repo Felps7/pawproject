@@ -14,7 +14,7 @@
                 <label class="control-label">Nome da ementa:
                     <input class="form-control" [(ngModel)]="ementa.nome" name="nome"
                         placeholder="Insira nome da ementa" /></label>
-                    <br>    
+                    <br>
                     <label class="control-label">Entradas:
                         <input class="form-control" [(ngModel)]="ementa.entradas" name="entradas"
                             placeholder="Insira entradas..." /> </label>
@@ -50,7 +50,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let e of ementasP; let i=index">
+                    <tr *ngFor="let e of ementas; let i=index">
                         <td (click)="ementaInfo(e._id)" title="Clica para veres/esconderes informações desta ementa!">
                             {{e.nome}} </td>
                         <td>{{e.preco}}€</td>

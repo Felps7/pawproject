@@ -16,15 +16,22 @@ ementaController.criarEmenta = function(req, res, next){
 };
 
 //Remover Ementa
-ementaController.removerEmenta = function(req, res, next){
-    Ementa.deleteOne({_id: req.params.id}, function(err, result){
-        if(err){
+ementaController.removerEmenta = function (req, res, next) {
+    Ementa.findOne({ _id: req.params.ementaId }, function (err, ementa) {
+        if (err) {
             next(err);
         } else {
-            res.json(result);
+            Ementa.deleteOne({ _id: req.params.ementaId }, function (err) {
+                if (err) {
+                    next(err);
+                } else {
+
+                    res.json({ status: "Done" });
+                }
+            });
         }
-    });
-};
+    })
+}
 
 //Listar todas as Ementas
 ementaController.listarEmentas = function(req, res, next){

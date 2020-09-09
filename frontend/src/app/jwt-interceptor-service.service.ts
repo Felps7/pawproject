@@ -24,10 +24,10 @@ export class JwtInterceptorService implements HttpInterceptor {
         if(error.status == 401){
           localStorage.removeItem("currentUser")
           localStorage.setItem("sessionExpired","true")
-          this.router.navigate(['login']);
+          this.router.navigate(['']);
         }
         if(error.status == 403){
-          this.router.navigate(['home']);
+          this.router.navigate(['/home']);
         }
         return throwError(error);
     }));

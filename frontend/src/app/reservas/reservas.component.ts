@@ -26,8 +26,7 @@ export class ReservasComponent implements OnInit {
   collectionSize;
   viewingFiltros: boolean = false;
   filtro: String;
-  dataString:Date;
-
+  dataTemp:Date;
   usernameFiltro: String;
   IDfiltro: String;
 
@@ -199,6 +198,11 @@ export class ReservasComponent implements OnInit {
         }
       });
       return this.ementaTemp = ementaResult;
+    }
+
+    dataRes(r: any){
+      this.dataTemp = new Date(r)
+      return this.dataTemp.toLocaleString()
     }
   }
 

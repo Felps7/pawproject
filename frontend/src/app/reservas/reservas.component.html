@@ -72,7 +72,7 @@
                     <tr *ngFor="let r of reservas">
                         <td (click)="reservaInfo(r._id)" title="Clica para veres/esconderes informações desta reserva!">
                             {{r.username}} </td>
-                        <td >{{r.data}}</td>
+                        <td >{{dataRes(r.data)}}</td>
                         <td>{{r.info}}</td>
                         <td>{{r.estado}}</td>
                         <td *ngIf="r.preco!=null">{{r.preco}}€</td>
@@ -87,8 +87,8 @@
             <p>Ementa escolhida: {{currentReserva.ementa}}</p>
             <p>Informação da reserva: {{currentReserva.info}}</p>
             <p>Estado desta reserva: {{currentReserva.estado}}</p>
-            <p>Data desta reserva: {{currentReserva.data}}</p>
-            <button *ngIf="atualizarReserva == false && user.role != 'UTILIZADOR'" class="btn btn-primary" type="button"
+            <p>Data desta reserva: {{dataRes(currentReserva.data)}}</p>
+            <button *ngIf="atualizarReserva == false && user.role!='UTILIZADOR'" class="btn btn-primary" type="button"
                 (click)="atualizarReserva = true">Atualizar</button>
 
             <form *ngIf="atualizarReserva && user.role != 'UTILIZADOR'" (submit)="update()" class="updateForm">

@@ -34,12 +34,6 @@ export class EmentasComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem("currentUser"))
   }
 
-  get ementasP(): any[] {
-    return this.ementas
-      .map((country, i) => ({ id: i + 1, ...country }))
-      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
-  }
-
   getEmentas() {
     this.ementas = [];
     this.rest.verEmentas().subscribe((data: {}) => {

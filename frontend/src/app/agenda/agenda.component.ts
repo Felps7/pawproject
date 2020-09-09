@@ -55,7 +55,7 @@ public eventSettings: EventSettingsModel;
       this.reserva.data = d;
       nr = this.verPossibilidade(this.dados, this.reserva.data)
       console.log("nr:  " + nr)
-      if(nr < 3){
+      if(nr < 10){
       this.dados.push({
         Subject: this.reserva.username,
         StartTime: this.reserva.data,
@@ -84,7 +84,7 @@ public eventSettings: EventSettingsModel;
       let dados22: String;
       dados11 = ""
       dados22 = ""
-    
+
       if(dados[i] !== undefined){
       dados11 = dados[i].StartTime.toLocaleString()
       } else{
